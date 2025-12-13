@@ -9,23 +9,35 @@ jobs:
     runs-on: self-hosted
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+      - name: Force Git HTTP/1.1
+        shell: cmd
+        run: git config --global http.version HTTP/1.1
+
+      - name: Clone repository (manual)
+        shell: cmd
+        run: |
+          rmdir /s /q . 2>nul
+          git clone --depth 1 https://github.com/henriquemoreno/devops-demo .
 
       - name: Restore
+        shell: cmd
         run: dotnet restore
 
       - name: Build
+        shell: cmd
         run: dotnet build -c Release --no-restore
 
       - name: Publish
+        shell: cmd
         run: dotnet publish -c Release -o publish
 
       - name: Deploy to IIS via Web Deploy
-        run: >
-          "C:\Program Files\IIS\Microsoft Web Deploy V3\msdeploy.exe"
-          -verb:sync
-          -source:contentPath="${{ github.workspace }}\publish"
-          -dest:contentPath="C:\inetpub\DevOpsDemo"
-          -enableRule:AppOffline
+        shell: cmd
+        run: |
+          "C:\Program Files\IIS\Microsoft Web Deploy V3\msdeploy.exe" ^
+          -verb:sync ^
+          -source:contentPath="%CD%\publish" ^
+          -dest:contentPath="C:\inetpub\DevOpsDemo" ^
+          -enableRule:AppOffline ^
           -enableRule:BackupRule
+
