@@ -29,13 +29,18 @@ jobs:
         shell: cmd
         run: dotnet publish -c Release -o publish
 
-      - name: Deploy to IIS via Web Deploy
+      - name: Deploy to IIS via Web Deploy (with App Offline)
         shell: cmd
         run: |
+          echo App offline > C:\inetpub\DevOpsDemo\app_offline.htm
+
           "C:\Program Files\IIS\Microsoft Web Deploy V3\msdeploy.exe" ^
           -verb:sync ^
           -source:dirPath="%CD%\publish" ^
           -dest:dirPath="C:\inetpub\DevOpsDemo" ^
           -verbose
+
+          del C:\inetpub\DevOpsDemo\app_offline.htm
+
 
 
