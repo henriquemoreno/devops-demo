@@ -9,15 +9,11 @@ jobs:
     runs-on: self-hosted
 
     steps:
-      - name: Force Git HTTP/1.1
-        shell: cmd
-        run: git config --global http.version HTTP/1.1
-
-      - name: Clone repository (manual)
+      - name: Clone repository via SSH
         shell: cmd
         run: |
           rmdir /s /q . 2>nul
-          git clone --depth 1 https://github.com/henriquemoreno/devops-demo .
+          git clone --depth 1 git@github.com:henriquemoreno/devops-demo.git .
 
       - name: Restore
         shell: cmd
@@ -40,5 +36,3 @@ jobs:
           -dest:contentPath="C:\inetpub\DevOpsDemo" ^
           -enableRule:AppOffline ^
           -enableRule:BackupRule
-
-
