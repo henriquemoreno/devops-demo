@@ -36,4 +36,5 @@ jobs:
           -verb:sync ^
           -source:contentPath="%CD%\publish" ^
           -dest:dirPath="C:\inetpub\DevOpsDemo" ^
-          -enableRule:AppOffline
+          -enableRule:AppOffline ^
+          -verbose
