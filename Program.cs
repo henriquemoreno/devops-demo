@@ -38,6 +38,18 @@ app.MapGet("/weatherforecast", () =>
 
 app.MapGet("/hello", () => "Hello World from IIS");
 
+app.MapGet("/produtos", () =>
+{
+    var produtos = new List<string>()
+    {
+      "Computador",
+      "Geladeira",
+      "Mesa"  
+    };
+
+    return produtos;
+});
+
 app.Run();
 
 record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
