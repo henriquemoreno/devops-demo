@@ -38,6 +38,8 @@ app.MapGet("/weatherforecast", () =>
 
 app.MapGet("/hello", () => "Hello World from IIS");
 
+app.MapGet("/pepe", () => "Salve Pepe!!!");
+
 app.MapGet("/produtos", () =>
 {
     var produtos = new List<string>()
