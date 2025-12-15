@@ -34,7 +34,8 @@ jobs:
         run: |
           "C:\Program Files\IIS\Microsoft Web Deploy V3\msdeploy.exe" ^
           -verb:sync ^
-          -source:contentPath="%CD%\publish" ^
+          -source:dirPath="%CD%\publish" ^
           -dest:dirPath="C:\inetpub\DevOpsDemo" ^
-          -enableRule:AppOffline ^
           -verbose
+
+
