@@ -35,6 +35,5 @@ jobs:
           "C:\Program Files\IIS\Microsoft Web Deploy V3\msdeploy.exe" ^
           -verb:sync ^
           -source:contentPath="%CD%\publish" ^
-          -dest:contentPath="C:\inetpub\DevOpsDemo" ^
-          -enableRule:AppOffline ^
-          -enableRule:BackupRule
+          -dest:dirPath="C:\inetpub\DevOpsDemo" ^
+          -enableRule:AppOffline
