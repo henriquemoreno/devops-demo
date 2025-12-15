@@ -11,6 +11,8 @@ jobs:
     steps:
       - name: Clone repository via SSH
         shell: cmd
+        env:
+          GIT_SSH_COMMAND: '"C:\Program Files\Git\usr\bin\ssh.exe" -o UserKnownHostsFile=C:/Windows/ServiceProfiles/NetworkService/.ssh/known_hosts'
         run: |
           rmdir /s /q . 2>nul
           git clone --depth 1 git@github.com:henriquemoreno/devops-demo.git .
